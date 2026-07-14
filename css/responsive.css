@@ -1,0 +1,88 @@
+@media(max-width:991px){
+
+    .navbar-collapse{
+
+        margin-top:20px;
+
+        background:#161616;
+
+        padding:20px;
+
+        border-radius:15px;
+    }
+
+    .navbar-nav{
+
+        gap:10px;
+    }
+
+    @media(max-width:991px){
+
+    .hero{
+
+        text-align:center;
+    }
+
+    .hero-title{
+
+        font-size:48px;
+    }
+
+    .hero-role{
+
+        font-size:28px;
+    }
+
+    .hero-description{
+
+        margin:auto;
+        margin-top:25px;
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+    }
+
+    .hero-image{
+
+        width:300px;
+        height:300px;
+
+        margin-top:50px;
+    }
+
+}
+
+
+@media(max-width:768px){
+
+.timeline::before{
+
+left:20px;
+
+}
+
+.timeline-item{
+
+width:100%;
+
+padding-left:60px;
+
+padding-right:20px;
+
+margin-left:0!important;
+
+}
+
+.timeline-dot{
+
+left:9px!important;
+
+right:auto;
+
+}
+
+}
+
+}
