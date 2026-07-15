@@ -185,3 +185,116 @@ scrollBtn.addEventListener("click", function () {
 
 });
 
+// Active Navbar Link
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+        }
+    });
+});
+
+const words = [
+    "Software Developer",
+    "Web Developer",
+    "ASP.NET Developer",
+    "Freelancer"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let currentWord = "";
+let isDeleting = false;
+
+function typeEffect() {
+
+    currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+        document.getElementById("typing").textContent =
+            currentWord.substring(0, charIndex++);
+    } else {
+        document.getElementById("typing").textContent =
+            currentWord.substring(0, charIndex--);
+    }
+
+    let speed = isDeleting ? 50 : 120;
+
+    if (!isDeleting && charIndex === currentWord.length + 1) {
+        speed = 1500;
+        isDeleting = true;
+    }
+
+    if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(typeEffect, speed);
+}
+
+typeEffect();
+
+const cards = document.querySelectorAll(".skill-card");
+
+cards.forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.transform =
+            `perspective(1000px)
+             rotateX(${-(y-rect.height/2)/15}deg)
+             rotateY(${(x-rect.width/2)/15}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform =
+            "perspective(1000px) rotateX(0) rotateY(0)";
+    });
+});
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+
+    revealElements.forEach(el => {
+
+        const windowHeight =
+            window.innerHeight;
+
+        const elementTop =
+            el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            el.classList.add("active");
+        }
+
+    });
+
+});
+
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100,
+});
+
