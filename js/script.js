@@ -159,19 +159,28 @@ if (contactForm) {
 
 const scrollBtn = document.getElementById("scrollTop");
 
+if(scrollBtn){
+
 window.addEventListener("scroll", function () {
 
-    if (window.scrollY > 300) {
-
-        scrollBtn.style.display = "block";
-
-    } else {
-
-        scrollBtn.style.display = "none";
-
+    if(window.scrollY > 300){
+        scrollBtn.style.display="block";
+    }else{
+        scrollBtn.style.display="none";
     }
 
 });
+
+scrollBtn.addEventListener("click", function () {
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+}
 
 scrollBtn.addEventListener("click", function () {
 
@@ -208,68 +217,68 @@ window.addEventListener("scroll", () => {
     });
 });
 
-const words = [
-    "Software Developer",
-    "Web Developer",
-    "ASP.NET Developer",
-    "Freelancer"
-];
+// const words = [
+//     "Software Developer",
+//     "Web Developer",
+//     "ASP.NET Developer",
+//     "Freelancer"
+// ];
 
-let wordIndex = 0;
-let charIndex = 0;
-let currentWord = "";
-let isDeleting = false;
+// let wordIndex = 0;
+// let charIndex = 0;
+// let currentWord = "";
+// let isDeleting = false;
 
-function typeEffect() {
+// function typeEffect() {
 
-    currentWord = words[wordIndex];
+//     currentWord = words[wordIndex];
 
-    if (!isDeleting) {
-        document.getElementById("typing").textContent =
-            currentWord.substring(0, charIndex++);
-    } else {
-        document.getElementById("typing").textContent =
-            currentWord.substring(0, charIndex--);
-    }
+//     if (!isDeleting) {
+//         document.getElementById("typing").textContent =
+//             currentWord.substring(0, charIndex++);
+//     } else {
+//         document.getElementById("typing").textContent =
+//             currentWord.substring(0, charIndex--);
+//     }
 
-    let speed = isDeleting ? 50 : 120;
+//     let speed = isDeleting ? 50 : 120;
 
-    if (!isDeleting && charIndex === currentWord.length + 1) {
-        speed = 1500;
-        isDeleting = true;
-    }
+//     if (!isDeleting && charIndex === currentWord.length + 1) {
+//         speed = 1500;
+//         isDeleting = true;
+//     }
 
-    if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-    }
+//     if (isDeleting && charIndex === 0) {
+//         isDeleting = false;
+//         wordIndex = (wordIndex + 1) % words.length;
+//     }
 
-    setTimeout(typeEffect, speed);
-}
+//     setTimeout(typeEffect, speed);
+// }
 
-typeEffect();
+// typeEffect();
 
-const cards = document.querySelectorAll(".skill-card");
+// const cards = document.querySelectorAll(".skill-card");
 
-cards.forEach(card => {
-    card.addEventListener("mousemove", (e) => {
+// cards.forEach(card => {
+//     card.addEventListener("mousemove", (e) => {
 
-        const rect = card.getBoundingClientRect();
+//         const rect = card.getBoundingClientRect();
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+//         const x = e.clientX - rect.left;
+//         const y = e.clientY - rect.top;
 
-        card.style.transform =
-            `perspective(1000px)
-             rotateX(${-(y-rect.height/2)/15}deg)
-             rotateY(${(x-rect.width/2)/15}deg)`;
-    });
+//         card.style.transform =
+//             `perspective(1000px)
+//              rotateX(${-(y-rect.height/2)/15}deg)
+//              rotateY(${(x-rect.width/2)/15}deg)`;
+//     });
 
-    card.addEventListener("mouseleave", () => {
-        card.style.transform =
-            "perspective(1000px) rotateX(0) rotateY(0)";
-    });
-});
+//     card.addEventListener("mouseleave", () => {
+//         card.style.transform =
+//             "perspective(1000px) rotateX(0) rotateY(0)";
+//     });
+// });
 
 const revealElements =
     document.querySelectorAll(".reveal");
